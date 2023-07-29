@@ -1,0 +1,26 @@
+* Clothes Shop Project, as "lebasdoni".
+
+  ** Authentication:
+    - [ ] Login, Registration JWT based by username, password
+    - [ ] Verification customer account by Email.
+    - [ ] Multi User handling(Customer, Admin, SuperUser).
+          + [ ] Admin: Admins can add, remove and manage website, products and etc.
+          + [ ] Customer: Customer users can see products, add their to cart and pay it.
+          + [ ] Superuser; Superusers can to managing admin users and access to django admin panel.
+
+  ** Products:
+    - [ ] Need to have warehouse managing on product info's and product inventory(ProductInfo, Product).
+    - [ ] The app have to save and show products in different category and jenres.
+          + like For men and women, Men Suite, Women dress ,Shoes and ...
+    - [ ] Customer Users can to Rating, comment and like each products.
+    - [ ] The API should to searchable, filerable, orderable and has a simple pagintaion.
+    - [ ] Shopping Cart and payment policy + customer posts address information.
+
+  ** Test and Documentaion:
+    - [ ] Unit Test all views, permision, model methods, signal, serializers and whole implemented codes and API endpoints.
+    - [ ] Postman test and documentation.
+    - [ ] Swagger documentation.
+
+
+  ~ Estimated time: 10 days.  Today: 2023-Jun-29
+  --- Time over: -
