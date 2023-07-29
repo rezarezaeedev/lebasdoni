@@ -1,0 +1,21 @@
+* Title: Products
+
+** Scenario: We need a products info table to save product concepts and a product table to save product warehouse inventory.
+
+  *** Models:
+    - [ ] ProductInfo:
+        - name
+        - size: small integer
+        - color
+        - sex(for [m]en, [w]oman and girl [gk]ids, boy [bk]ids, [s]port) and no other.
+        - price
+        - material
+
+    - [ ] Product:
+        - barcode number: unique string(length=20)
+        - FK to Product info.
+
+    ~ Tips:
+      - 
+
+
