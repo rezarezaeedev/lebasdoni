@@ -9,3 +9,7 @@ class ProductInfoAdmin(admin.ModelAdmin):
 class ProductInfoAdmin(admin.ModelAdmin):
 	pass
 
+@admin.register(models.Sex)
+class SexInfoAdmin(admin.ModelAdmin):
+	pass
+
