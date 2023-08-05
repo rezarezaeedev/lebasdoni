@@ -1,4 +1,4 @@
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 from . import models as mymodels
 from . import serializers as myserializers
 
@@ -17,6 +17,6 @@ class CategoryView(ModelViewSet):
 	serializer_class = myserializers.CategorySerializer
 
 
-class SexView(ModelViewSet):
+class SexView(ReadOnlyModelViewSet):
 	queryset = mymodels.Sex.objects.all()
 	serializer_class = myserializers.SexSerializer
