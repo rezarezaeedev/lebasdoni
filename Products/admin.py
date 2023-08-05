@@ -1,3 +1,11 @@
 from django.contrib import admin
+from . import models
 
-# Register your models here.
+@admin.register(models.ProductInfo)
+class ProductInfoAdmin(admin.ModelAdmin):
+	pass
+
+@admin.register(models.Product)
+class ProductInfoAdmin(admin.ModelAdmin):
+	pass
+
