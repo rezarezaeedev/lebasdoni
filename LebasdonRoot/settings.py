@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
 
     # My Apps
-    'Products.apps.ProductsConfig',
+    'Warehouse.apps.WarehouseConfig',
 ]
 
 MIDDLEWARE = [
