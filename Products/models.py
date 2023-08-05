@@ -23,12 +23,10 @@ class ProductInfo(models.Model):
 	size = models.SmallIntegerField()
 	more = models.TextField()
 	category = models.ManyToManyField('Category')
-	# tag = models.ManyToManyField('Tag')
 	# material = FK 2 Material
 
 	def __str__(self):
 		return f'{self.name} {self.color} {self.price}$'
-
 
 class Product(models.Model):
 	product_info = models.ForeignKey('ProductInfo', on_delete=models.CASCADE)
