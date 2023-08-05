@@ -6,10 +6,13 @@ class ProductInfoAdmin(admin.ModelAdmin):
 	pass
 
 @admin.register(models.Product)
-class ProductInfoAdmin(admin.ModelAdmin):
+class ProductAdmin(admin.ModelAdmin):
 	pass
 
 @admin.register(models.Sex)
-class SexInfoAdmin(admin.ModelAdmin):
+class SexAdmin(admin.ModelAdmin):
 	pass
 
+@admin.register(models.Category)
+class CategoryAdmin(admin.ModelAdmin):
+	pass

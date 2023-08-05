@@ -1,0 +1,12 @@
+* Title: Category and Product Tags
+
+** Scenario: We need a system to management product in many types.
+
+*** Models:
+    - [ ] Category:
+      - name
+      - m:1 Cat:ProInf
+
+    - [ ] Tag:
+      - name
+      - m:m from product_info

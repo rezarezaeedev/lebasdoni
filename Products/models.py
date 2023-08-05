@@ -8,13 +8,23 @@ class Sex(models.Model):
 		return 'Man' if self.sex else 'Woman'
 
 
+class Category(models.Model):
+	name = models.CharField(max_length=50)
+
+	def __str__(self):
+		return self.name
+
+
 class ProductInfo(models.Model):
 	name = models.CharField(max_length=50)
 	color = models.CharField(max_length=20)
 	price = models.FloatField()
 	sex = models.ForeignKey('Sex', on_delete=models.CASCADE)
 	size = models.SmallIntegerField()
-	# material = FK 2 Material 
+	more = models.TextField()
+	category = models.ManyToManyField('Category')
+	# tag = models.ManyToManyField('Tag')
+	# material = FK 2 Material
 
 	def __str__(self):
 		return f'{self.name} {self.color} {self.price}$'
