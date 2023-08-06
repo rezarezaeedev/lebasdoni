@@ -34,3 +34,15 @@ class CategorySerializer(serializers.ModelSerializer):
 		fields = '__all__'
 		model = mymodels.Category
 
+
+class LikeSerializer(serializers.ModelSerializer):
+	class Meta:
+		fields = '__all__'
+		model = mymodels.Like
+
+
+class ProductCommentSerializer(serializers.ModelSerializer):
+	class Meta:
+		fields = '__all__'
+		model = mymodels.ProductComment
+

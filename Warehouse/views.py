@@ -1,8 +1,11 @@
 from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
+from rest_framework.generics import CreateAPIView, UpdateAPIView, GenericAPIView
+from rest_framework import mixins
 from . import models as mymodels
 from . import serializers as myserializers
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
+from rest_framework.response import Response
 
 
 class ProductInfoView(ModelViewSet):
@@ -27,3 +30,15 @@ class CategoryView(ModelViewSet):
 class SexView(ReadOnlyModelViewSet):
 	queryset = mymodels.Sex.objects.all()
 	serializer_class = myserializers.SexSerializer
+
+
+class LikeView(CreateAPIView, UpdateAPIView,):
+	queryset = mymodels.Like.objects.all()
+	serializer_class = myserializers.LikeSerializer
+
+
+class ProductCommentView(CreateAPIView):
+	queryset = mymodels.ProductComment.objects.all()
+	serializer_class = myserializers.ProductCommentSerializer
+	
+	 

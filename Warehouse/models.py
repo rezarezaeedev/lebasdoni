@@ -1,4 +1,23 @@
 from django.db import models
+from django.contrib.auth import get_user_model
+from django.core import validators
+
+User = get_user_model()
+
+
+class ProductComment(models.Model):
+	text = models.CharField(max_length=500)
+	rate = models.SmallIntegerField(validators=[validators.MaxValueValidator(5,'Maximum rate number is 5.'), validators.MinValueValidator(1,'Minimum rate number is 1.')])
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	product_info = models.OneToOneField('ProductInfo', on_delete=models.CASCADE)
+
+
+class Like(models.Model):
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	product_info = models.ForeignKey('ProductInfo', on_delete=models.CASCADE)
+
+	class Meta:
+		unique_together = ['user', 'product_info']
 
 
 class Sex(models.Model):
