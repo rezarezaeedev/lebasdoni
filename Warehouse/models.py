@@ -2,10 +2,11 @@ from django.db import models
 
 
 class Sex(models.Model):
-	sex = models.BooleanField(help_text="True meant Man's sex and False is Woman")
+	sex = models.CharField(max_length=10, unique=True)
+	sex_persian = models.CharField(max_length=10, unique=True, help_text='please enter sex name in persian/لطفا جنسیت را به فارسی تایپ کنید.')
 
 	def __str__(self):
-		return 'Man' if self.sex else 'Woman'
+		return self.sex
 
 
 class Category(models.Model):
