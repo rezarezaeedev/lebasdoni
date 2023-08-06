@@ -6,7 +6,7 @@ class Sex(models.Model):
 	sex_persian = models.CharField(max_length=10, unique=True, help_text='please enter sex name in persian/لطفا جنسیت را به فارسی تایپ کنید.')
 
 	def __str__(self):
-		return self.sex
+		return f'{self.sex}/{self.sex_persian}'
 
 
 class Category(models.Model):

@@ -12,7 +12,11 @@ class ProductInfoSerializer(serializers.ModelSerializer):
 	def get_category_names(self, obj):
 		return map(lambda x:x.name ,obj.category.all())
 
+	def get_sex_string(self, obj):
+		return str(obj.sex)
+		
 	category_names = serializers.SerializerMethodField()
+	sex_string = serializers.SerializerMethodField()
 
 	class Meta:
 		fields = '__all__'
