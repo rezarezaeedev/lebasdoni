@@ -30,10 +30,10 @@ class ProductInfoSerializer(serializers.ModelSerializer):
 	def get_likes(self, obj):
 		return obj.like_set.all().count()
 
-
 	def get_comments(self, obj):
-		result = ProductCommentSerializer(obj.comment_set.all(), many=True,)
+		result = ProductCommentSerializer(obj.comment_set.all().order_by('-created_at')[:5], many=True,)
 		return result.data
+
 		
 	category_names = serializers.SerializerMethodField()
 	sex_string = serializers.SerializerMethodField()
