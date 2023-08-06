@@ -1,10 +1,16 @@
 from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 from . import models as mymodels
 from . import serializers as myserializers
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters
+
 
 class ProductInfoView(ModelViewSet):
 	queryset = mymodels.ProductInfo.objects.all()
 	serializer_class = myserializers.ProductInfoSerializer
+	filter_backends = (DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)
+	filterset_fields = ('sex', 'size', 'category')
+	search_fields = ['name', 'color', 'category__name']
 
 
 class ProductView(ModelViewSet):
