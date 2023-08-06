@@ -9,7 +9,11 @@ class ProductComment(models.Model):
 	text = models.CharField(max_length=500)
 	rate = models.SmallIntegerField(validators=[validators.MaxValueValidator(5,'Maximum rate number is 5.'), validators.MinValueValidator(1,'Minimum rate number is 1.')])
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
-	product_info = models.OneToOneField('ProductInfo', on_delete=models.CASCADE)
+	product_info = models.ForeignKey('ProductInfo', on_delete=models.CASCADE, related_name = 'comment_set')
+
+
+	def __str__(self):
+		return f'{self.user}-{self.product_info.name}-{self.rate}'
 
 
 class Like(models.Model):
@@ -18,6 +22,9 @@ class Like(models.Model):
 
 	class Meta:
 		unique_together = ['user', 'product_info']
+
+	def __str__(self):
+		return f'{self.user}-{self.product_info.name}'
 
 
 class Sex(models.Model):
