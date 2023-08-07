@@ -1,9 +1,10 @@
 from rest_framework.decorators import api_view
+from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
-from .serializers import RegisterationSerializer
+from .serializers import RegisterationSerializer, ProfileSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework import status
-
+from . import models as mymodels
 
 
 @api_view(['POST',])
@@ -18,3 +19,14 @@ def registeration_view(request):
 		data = serializer.errors
 
 	return Response(data, status=status.HTTP_201_CREATED)
+
+
+class ProfileView(ModelViewSet):
+	queryset = mymodels.Profile.objects.all()
+	serializer_class = ProfileSerializer
+	lookup_field = 'user__username'
+
+	def list(self, request):
+		return Response({'error':'Not found!'}, status=404)
+
+
