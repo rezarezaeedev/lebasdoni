@@ -1,5 +1,5 @@
 from rest_framework.decorators import api_view
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.generics import RetrieveUpdateAPIView
 from rest_framework.response import Response
 from .serializers import RegisterationSerializer, ProfileSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -21,12 +21,7 @@ def registeration_view(request):
 	return Response(data, status=status.HTTP_201_CREATED)
 
 
-class ProfileView(ModelViewSet):
+class ProfileView(RetrieveUpdateAPIView):
 	queryset = mymodels.Profile.objects.all()
 	serializer_class = ProfileSerializer
 	lookup_field = 'user__username'
-
-	def list(self, request):
-		return Response({'error':'Not found!'}, status=404)
-
-
