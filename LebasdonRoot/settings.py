@@ -41,9 +41,11 @@ INSTALLED_APPS = [
     # Installed Apps
     'rest_framework',
     'django_filters',
+    'rest_framework_simplejwt',
 
     # My Apps
     'Warehouse.apps.WarehouseConfig',
+    'Accounts',
 ]
 
 MIDDLEWARE = [

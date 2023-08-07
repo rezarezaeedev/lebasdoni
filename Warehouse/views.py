@@ -14,7 +14,7 @@ class ProductInfoView(ModelViewSet):
 	filter_backends = (DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)
 	filterset_fields = ('sex', 'size', 'category')
 	search_fields = ['name', 'color', 'category__name', 'sex__sex_persian', 'sex__sex']
-	ordering_fields = ['price', 'like', 'comment_set', 'comment_set__rate','size', 'name']
+	ordering_fields = ['price', 'like', 'comment_set', 'comment_set__rate','size', 'created_at']
 
 
 class ProductView(ModelViewSet):
