@@ -12,6 +12,7 @@ class ProductComment(models.Model):
 	product_info = models.ForeignKey('ProductInfo', on_delete=models.CASCADE, related_name = 'comment_set')
 	created_at = models.DateTimeField(auto_now=True)
 
+
 	def __str__(self):
 		return f'{self.user}-{self.product_info.name}-{self.rate}'
 
@@ -54,6 +55,16 @@ class ProductInfo(models.Model):
 
 	def __str__(self):
 		return f'{self.name} {self.color} {self.price}$'
+
+	@property
+	def average_rate(self):
+		result = 0
+		queryset = self.comment_set.all()
+		queryset  = list(map(lambda x:x.rate ,queryset))
+		if queryset:
+			result = sum(queryset)/len(queryset)
+		return result
+
 
 class Product(models.Model):
 	product_info = models.ForeignKey('ProductInfo', on_delete=models.CASCADE)

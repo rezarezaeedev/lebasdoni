@@ -15,7 +15,7 @@ class ProductInfoView(ModelViewSet):
 	filterset_fields = ('sex', 'size', 'category')
 	search_fields = ['name', 'color', 'category__name', 'sex__sex_persian', 'sex__sex']
 	ordering_fields = ['price', 'size', 'name']
-	# ordering = [rate, likes, comment quantities]
+	ordering = ['-like', '-comment_set__rate']
 
 class ProductView(ModelViewSet):
 	queryset = mymodels.Product.objects.all()
