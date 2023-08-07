@@ -4,7 +4,8 @@ from . import models
 
 @admin.register(models.ProductInfo)
 class ProductInfoAdmin(admin.ModelAdmin):
-	pass
+	list_display=['__str__','active']
+	list_editable = ['active']
 
 
 @admin.register(models.Product)
@@ -23,10 +24,11 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 @admin.register(models.ProductComment)
-class SexAdmin(admin.ModelAdmin):
-	pass
+class ProductCommentAdmin(admin.ModelAdmin):
+	list_display=['__str__','active']
+	list_editable = ['active']
 
 
 @admin.register(models.Like)
-class CategoryAdmin(admin.ModelAdmin):
+class LikeAdmin(admin.ModelAdmin):
 	pass

@@ -9,13 +9,13 @@ from rest_framework.response import Response
 
 
 class ProductInfoView(ModelViewSet):
-	queryset = mymodels.ProductInfo.objects.all()
+	queryset = mymodels.ProductInfo.objects.filter(active=1)
 	serializer_class = myserializers.ProductInfoSerializer
 	filter_backends = (DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)
 	filterset_fields = ('sex', 'size', 'category')
 	search_fields = ['name', 'color', 'category__name', 'sex__sex_persian', 'sex__sex']
-	ordering_fields = ['price', 'size', 'name']
-	ordering = ['-like', '-comment_set__rate']
+	ordering_fields = ['price', 'like', 'comment_set', 'comment_set__rate','size', 'name']
+
 
 class ProductView(ModelViewSet):
 	queryset = mymodels.Product.objects.all()

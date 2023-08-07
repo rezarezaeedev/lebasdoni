@@ -31,7 +31,7 @@ class ProductInfoSerializer(serializers.ModelSerializer):
 		return obj.like_set.all().count()
 
 	def get_comments(self, obj):
-		result = ProductCommentSerializer(obj.comment_set.all().order_by('-created_at')[:5], many=True,)
+		result = ProductCommentSerializer(obj.comment_set.filter(active=1).order_by('-created_at')[:5], many=True,)
 		return result.data
 
 		

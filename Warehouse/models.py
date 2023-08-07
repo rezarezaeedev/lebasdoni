@@ -11,6 +11,7 @@ class ProductComment(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	product_info = models.ForeignKey('ProductInfo', on_delete=models.CASCADE, related_name = 'comment_set')
 	created_at = models.DateTimeField(auto_now=True)
+	active = models.BooleanField(default=1)
 
 
 	def __str__(self):
@@ -51,6 +52,8 @@ class ProductInfo(models.Model):
 	size = models.SmallIntegerField()
 	more = models.TextField()
 	category = models.ManyToManyField('Category')
+	active = models.BooleanField(default=1)
+	created_at = models.DateTimeField(auto_now_add=True)
 	# material = FK 2 Material
 
 	def __str__(self):
