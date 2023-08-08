@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from . import models as mymodels
+from Warehouse.models import Product
 
 
 class CartItemSerializer(serializers.ModelSerializer):
@@ -10,6 +11,15 @@ class CartItemSerializer(serializers.ModelSerializer):
 	product_info_string = serializers.ReadOnlyField(source='product.product_info.__str__')
 
 
+	def save(self):
+		product_id = self.validated_data['product']
+		queryset = Product.objects.filter(id=product_id, is_available=True, is_reserved=False)
+		if queryset.exists():
+			queryset = queryset.first()
+			queryset.update(is_reserved=True)
+			return super().save()
+		raise serializers.ValidationError({'error':'The product not available or reserved already.'})
+
 
 class CartSerializer(serializers.ModelSerializer):
 	items = serializers.SerializerMethodField()
@@ -19,9 +29,7 @@ class CartSerializer(serializers.ModelSerializer):
 		return obj.user.username
 
 	def get_items(self, obj):
-		returnx =  CartItemSerializer(mymodels.CartItem.objects.filter(cart=obj), many=1).data
-		print(returnx)
-		return returnx
+		return CartItemSerializer(mymodels.CartItem.objects.filter(cart=obj), many=1).data
 
 	class Meta:
 		model = mymodels.Cart

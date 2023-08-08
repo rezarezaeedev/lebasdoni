@@ -77,4 +77,4 @@ class Product(models.Model):
 	exported_time = models.DateTimeField(null=True, blank=True, editable=False)
 
 	def __str__(self):
-		return f'Availablity:{self.is_available} ,Reservilty:{self.is_reserved}'
+		return f'{self.pk}-Availablity:{self.is_available} ,Reservilty:{self.is_reserved}'
