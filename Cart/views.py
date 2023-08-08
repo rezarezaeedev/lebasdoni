@@ -6,15 +6,11 @@ from rest_framework.response import Response
 
 class CartViews(ModelViewSet):
 	serializer_class = myserializers.CartSerializer
-	lookup_field = 'username'
-	queryset = mymodels.Cart.objects.all()
+	queryset =mymodels.Cart.objects.all()
 
 
-	def retrieve(self, request, username, *args, **kwargs):
-		if request.user.username == username:
-			queryset = mymodels.Cart.objects.get(is_paid=0, user__username=request.user.username)
-			serializer = myserializers.CartSerializer(queryset)
-			return Response(serializer.data, status=200)
-		return Response({'error':'You can view your account carts.'}, status=404)
+	def get_queryset(self):
+		queryset = mymodels.Cart.objects.filter(is_paid=0, user__username=self.request.user.username)
+		return queryset
 
 
