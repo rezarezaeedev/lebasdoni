@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     # My Apps
     'Warehouse.apps.WarehouseConfig',
     'Accounts',
+    'Payment',
 ]
 
 MIDDLEWARE = [
