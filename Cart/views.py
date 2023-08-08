@@ -3,6 +3,7 @@ from . import serializers as myserializers
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from rest_framework import status
+from datetime import datetime
 
 
 class CartViews(ModelViewSet):
@@ -16,7 +17,19 @@ class CartViews(ModelViewSet):
 
 
 	def update(self, request, pk):
+		'Uses for set paid status after success payment.'
+		data_to_change = {'is_paid':True, 'paid_at':datetime.today()}
+		queryset = self.get_object()
+		serializer = self.get_serializer(queryset ,data=data_to_change, partial=True)
+		serializer.is_valid(raise_exception=True)
+		self.perform_update(serializer)
+		return Response({'message':'Yor cart paid successfuly', **serializer.data}, status=200)
+		return Response(serializer.errors, status=401)
+		
+	def partial_update(self, request, pk):
 		return Response({'errors':'METHOD NOT ALLOWED'}, status=HTTP_405_METHOD_NOT_ALLOWED)
+
+
 		
 	def partial_update(self, request, pk):
 		return Response({'errors':'METHOD NOT ALLOWED'}, status=HTTP_405_METHOD_NOT_ALLOWED)
