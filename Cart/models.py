@@ -1,8 +1,11 @@
 from django.db import models
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 class Cart(models.Model):
-	profile = models.OneToOneField('Accounts.Profile', on_delete=models.CASCADE)
+	user = models.OneToOneField(User, on_delete=models.CASCADE)
 	created_at = models.DateTimeField(auto_now_add=True)
 	paid_at = models.DateTimeField(null=True, blank=1)
 	is_paid = models.BooleanField(default=False)
