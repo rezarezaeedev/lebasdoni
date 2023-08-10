@@ -54,7 +54,7 @@ class ProductInfo(models.Model):
 	category = models.ManyToManyField('Category')
 	active = models.BooleanField(default=1)
 	created_at = models.DateTimeField(auto_now_add=True)
-	# material = FK 2 Material
+	image = models.ImageField(upload_to='Media/uploded/', null=1, blank=1)
 
 	def __str__(self):
 		return f'{self.name} {self.color} {self.price}$'
