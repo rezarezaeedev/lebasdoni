@@ -25,12 +25,12 @@ class CartViews(ModelViewSet):
 		self.perform_update(serializer)
 		return Response({'message':'Yor cart paid successfuly', **serializer.data}, status=200)
 		return Response(serializer.errors, status=401)
+
 		
 	def partial_update(self, request, pk):
 		return Response({'errors':'METHOD NOT ALLOWED'}, status=HTTP_405_METHOD_NOT_ALLOWED)
 
 
-		
 	def partial_update(self, request, pk):
 		return Response({'errors':'METHOD NOT ALLOWED'}, status=HTTP_405_METHOD_NOT_ALLOWED)
 

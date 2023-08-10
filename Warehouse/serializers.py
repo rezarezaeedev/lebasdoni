@@ -34,11 +34,15 @@ class ProductInfoSerializer(serializers.ModelSerializer):
 		result = ProductCommentSerializer(obj.comment_set.filter(active=1).order_by('-created_at')[:5], many=True,)
 		return result.data
 
+	def get_available_in_warehouse(self, obj):
+		return obj.product_set.all().count()
+
 		
 	category_names = serializers.SerializerMethodField()
 	sex_string = serializers.SerializerMethodField()
 	likes = serializers.SerializerMethodField()
 	comments = serializers.SerializerMethodField()
+	available_in_warehouse = serializers.SerializerMethodField()
 
 	class Meta:
 		fields = '__all__'
