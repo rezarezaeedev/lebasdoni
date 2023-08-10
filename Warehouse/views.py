@@ -6,9 +6,11 @@ from . import serializers as myserializers
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
 from rest_framework.response import Response
+from . import policies
 
 
 class ProductInfoView(ModelViewSet):
+	permission_classes = [policies.ProductInfoAccessPolicy]
 	queryset = mymodels.ProductInfo.objects.filter(active=1)
 	serializer_class = myserializers.ProductInfoSerializer
 	filter_backends = (DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)
@@ -18,11 +20,13 @@ class ProductInfoView(ModelViewSet):
 
 
 class ProductView(ModelViewSet):
+	permission_classes = [policies.ProductAccessPolicy]
 	queryset = mymodels.Product.objects.all()
 	serializer_class = myserializers.ProductSerializer
 
 
 class CategoryView(ModelViewSet):
+	permission_classes = [policies.CategoryAccessPolicy]
 	queryset = mymodels.Category.objects.all()
 	serializer_class = myserializers.CategorySerializer
 
@@ -33,11 +37,13 @@ class SexView(ReadOnlyModelViewSet):
 
 
 class LikeView(CreateAPIView, UpdateAPIView,):
+	permission_classes = [policies.LikeAndCommentAccessPolicy]
 	queryset = mymodels.Like.objects.all()
 	serializer_class = myserializers.LikeSerializer
 
 
 class ProductCommentView(CreateAPIView):
+	permission_classes = [policies.LikeAndCommentAccessPolicy]
 	queryset = mymodels.ProductComment.objects.all()
 	serializer_class = myserializers.ProductCommentSerializer
 	
