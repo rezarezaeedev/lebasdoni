@@ -1,12 +1,19 @@
 from django.db import models
 from django.core import validators
-from django.contrib.auth import get_user_model
+from django.contrib.auth.models import AbstractUser
 
-User = get_user_model()
+
+class NewUser(AbstractUser):
+		email = models.EmailField(unique=True)
+		is_verified = models.BooleanField(default=False)
+		is_customer = models.BooleanField(default=True)
+
+		def __str__(self):
+			return f"{self.id} - {self.username} - {self.email} - {'Verified' if self.is_verified else 'Not verified'}"
 
 
 class Profile(models.Model):
-	user = models.OneToOneField(User, on_delete=models.CASCADE)
+	user = models.OneToOneField(NewUser, on_delete=models.CASCADE)
 	city = models.CharField(max_length=30)
 	address = models.CharField(max_length=300)
 	postalcode = models.CharField(max_length=10, validators=[validators.MinLengthValidator(10)])

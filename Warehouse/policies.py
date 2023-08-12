@@ -69,7 +69,7 @@ class LikeAndCommentAccessPolicy(AccessPolicy):
     		'effect':'allow'
     	},
         {
-            "action": ['create', "update", "partial_update", 'destroy'],
+            "action": ['<method:post>', '<method:put>', '<method:patch>', '<method:delete>',],
             "principal": ["group:CustomerUser"],
             "effect": "allow"
         }

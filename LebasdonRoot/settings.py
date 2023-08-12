@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
 
     # My Apps
-    'Warehouse.apps.WarehouseConfig',
+    'Warehouse',
     'Accounts',
     'Cart',
 ]
@@ -138,10 +138,6 @@ REST_FRAMEWORK = {
     'PAGE_SIZE':4,
 
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.BasicAuthentication',
-    ],
-
-    'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
 
@@ -156,3 +152,7 @@ REST_FRAMEWORK = {
     },
 
 }
+
+AUTH_USER_MODEL = "Accounts.NewUser"
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
