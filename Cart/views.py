@@ -4,15 +4,16 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from rest_framework import status
 from datetime import datetime
-
+from .permissions import IsOwnerUserForCartItem, IsOwnerUserForCart
 
 class CartViews(ModelViewSet):
+	permission_classes = [IsOwnerUserForCart]
 	serializer_class = myserializers.CartSerializer
 	queryset 		 = mymodels.Cart.objects.all()
 
 
 	def get_queryset(self):
-		queryset = mymodels.Cart.objects.filter(is_paid=0, user__username=self.request.user.username)
+		queryset = mymodels.Cart.objects.filter(user__username=self.request.user.username)
 		return queryset
 
 
@@ -24,19 +25,14 @@ class CartViews(ModelViewSet):
 		serializer.is_valid(raise_exception=True)
 		self.perform_update(serializer)
 		return Response({'message':'Yor cart paid successfuly', **serializer.data}, status=200)
-		return Response(serializer.errors, status=401)
 
 		
 	def partial_update(self, request, pk):
-		return Response({'errors':'METHOD NOT ALLOWED'}, status=HTTP_405_METHOD_NOT_ALLOWED)
-
-
-	def partial_update(self, request, pk):
-		return Response({'errors':'METHOD NOT ALLOWED'}, status=HTTP_405_METHOD_NOT_ALLOWED)
-
+		return self.update(request, pk)
 
 
 class CartItemViews(ModelViewSet):
+	permission_classes = [IsOwnerUserForCartItem]
 	serializer_class = myserializers.CartItemSerializer
 	queryset 		 = mymodels.CartItem.objects.all()
 
