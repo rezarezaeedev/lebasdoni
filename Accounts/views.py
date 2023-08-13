@@ -9,6 +9,7 @@ from django.core.mail import send_mail
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
+from Permissions.permissions import IsOwnerUser
 
 
 User = get_user_model()
@@ -67,6 +68,7 @@ def activate_view(request, username=None, verification_token=None):
 
 
 class ProfileView(RetrieveUpdateAPIView):
+	permission_classes = [IsOwnerUser]
 	queryset = mymodels.Profile.objects.all()
 	serializer_class = ProfileSerializer
 	lookup_field = 'user__username'

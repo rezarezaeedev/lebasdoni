@@ -4,10 +4,10 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from rest_framework import status
 from datetime import datetime
-from .permissions import IsOwnerUserForCartItem, IsOwnerUserForCart
+from Permissions.permissions import IsOwnerUser
 
 class CartViews(ModelViewSet):
-	permission_classes = [IsOwnerUserForCart]
+	permission_classes = [IsOwnerUser]
 	serializer_class = myserializers.CartSerializer
 	queryset 		 = mymodels.Cart.objects.all()
 
@@ -32,7 +32,7 @@ class CartViews(ModelViewSet):
 
 
 class CartItemViews(ModelViewSet):
-	permission_classes = [IsOwnerUserForCartItem]
+	permission_classes = [IsOwnerUser]
 	serializer_class = myserializers.CartItemSerializer
 	queryset 		 = mymodels.CartItem.objects.all()
 
