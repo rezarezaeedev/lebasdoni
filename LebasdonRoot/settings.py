@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-fu)&))a+0i0d$bjm99*a1c+h)rk18cit-y4r+j)(7r4_vex=sm'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = 1
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -42,12 +42,14 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'rest_framework_simplejwt',
+    'drf_yasg',
 
     # My Apps
     'Warehouse',
     'Accounts',
     'Cart',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -139,6 +141,7 @@ REST_FRAMEWORK = {
 
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
     ],
 
     'DEFAULT_THROTTLE_CLASSES': [
@@ -156,3 +159,4 @@ REST_FRAMEWORK = {
 AUTH_USER_MODEL = "Accounts.NewUser"
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+

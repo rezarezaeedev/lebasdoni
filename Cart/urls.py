@@ -5,8 +5,8 @@ from rest_framework.routers import DefaultRouter
 app_name = 'cart-app'
 
 router=DefaultRouter()
-router.register('cart', myviews.CartViews)
-router.register('cart-item', myviews.CartItemViews)
+router.register(r'cart', myviews.CartViews)
+router.register(r'cart-item', myviews.CartItemViews)
 
 
 urlpatterns = [

@@ -5,6 +5,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from datetime import datetime
 from Permissions.permissions import IsOwnerUser
+from drf_yasg.utils import swagger_auto_schema
+
 
 class CartViews(ModelViewSet):
 	permission_classes = [IsOwnerUser]
@@ -15,7 +17,6 @@ class CartViews(ModelViewSet):
 	def get_queryset(self):
 		queryset = mymodels.Cart.objects.filter(user__username=self.request.user.username)
 		return queryset
-
 
 	def update(self, request, pk):
 		'Uses for set paid status after success payment.'
